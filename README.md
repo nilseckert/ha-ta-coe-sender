@@ -63,3 +63,7 @@ Danach: *Einstellungen → Geräte & Dienste → Integration hinzufügen → TA 
   rausgehen. Mit `logger: logs: custom_components.ta_coe_sender: debug` siehst du jedes gesendete Paket als Hex.
 - Firewall oder VLAN zwischen HA und C.M.I. prüfen.
 - Falsche Größenordnung in der UVR: Dezimalstellen bzw. Einheit prüfen.
+
+## Lizenz
+
+MIT, siehe [LICENSE](LICENSE).
