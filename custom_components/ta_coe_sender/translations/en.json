@@ -1,0 +1,67 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up TA CoE Sender",
+        "description": "Target is the Technische Alternative C.M.I. The node number is the CAN address under which Home Assistant appears on the CAN bus; it must not be in use there. Leave the port empty to use the default of the chosen CoE version.",
+        "data": {
+          "host": "C.M.I. IP address or hostname",
+          "version": "CoE version",
+          "node": "Own CAN node number (1-62)",
+          "port": "UDP port (empty = default)"
+        }
+      }
+    },
+    "error": {
+      "host_required": "Please enter an address."
+    },
+    "abort": {
+      "already_configured": "This C.M.I. is already configured with this node number."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "TA CoE Sender",
+        "menu_options": {
+          "add_mapping": "Add value",
+          "remove_mapping": "Remove values",
+          "settings": "Send interval"
+        }
+      },
+      "add_mapping": {
+        "title": "Map a value",
+        "description": "The value appears on the CAN bus as an output of this node. In the UVR create a CAN input with the same node and output number. Decimals: the value is multiplied by 10^decimals. For °C the default is 1 (45.3 °C is sent as 453). For all other units enter the number from the TA table of measured quantities.",
+        "data": {
+          "entity_id": "Entity",
+          "kind": "Type",
+          "output": "Output number",
+          "unit": "Unit (analog only)",
+          "decimals": "Decimals (analog only)"
+        }
+      },
+      "remove_mapping": {
+        "title": "Remove values",
+        "data": {
+          "remove": "Mappings to remove"
+        }
+      },
+      "settings": {
+        "title": "Send interval",
+        "description": "All values are sent immediately on every change and additionally at this interval. It must be shorter than the timeout of the CAN input in the UVR.",
+        "data": {
+          "interval": "Interval in seconds"
+        }
+      }
+    },
+    "error": {
+      "output_out_of_range": "Output number too high for the chosen CoE version (V1: up to 32, V2: up to 64).",
+      "duplicate_output": "This output is already in use.",
+      "unit_required": "A unit is required for analog values.",
+      "decimals_required": "There is no default for this unit. Please enter the decimals."
+    },
+    "abort": {
+      "no_mappings": "No values are mapped."
+    }
+  }
+}

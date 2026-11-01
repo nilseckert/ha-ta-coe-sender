@@ -1,0 +1,67 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "TA CoE Sender einrichten",
+        "description": "Ziel ist die C.M.I. von Technische Alternative. Die Knotennummer ist die CAN-Adresse, unter der Home Assistant im CAN-Bus erscheint. Sie darf dort nicht schon vergeben sein. Der Port bleibt leer, um den Standard der gewählten CoE-Version zu nutzen.",
+        "data": {
+          "host": "IP-Adresse oder Hostname der C.M.I.",
+          "version": "CoE-Version",
+          "node": "Eigene CAN-Knotennummer (1-62)",
+          "port": "UDP-Port (leer = Standard)"
+        }
+      }
+    },
+    "error": {
+      "host_required": "Bitte eine Adresse angeben."
+    },
+    "abort": {
+      "already_configured": "Diese C.M.I. ist mit dieser Knotennummer bereits eingerichtet."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "TA CoE Sender",
+        "menu_options": {
+          "add_mapping": "Wert hinzufügen",
+          "remove_mapping": "Werte entfernen",
+          "settings": "Sendeintervall"
+        }
+      },
+      "add_mapping": {
+        "title": "Wert zuordnen",
+        "description": "Der Wert erscheint im CAN-Bus als Ausgang dieses Knotens. In der UVR legst du einen CAN-Eingang mit derselben Knotennummer und Ausgangsnummer an. Dezimalstellen: Der Wert wird mit 10^Dezimalstellen multipliziert. Bei °C ist 1 vorbelegt (45,3 °C wird als 453 gesendet). Bei allen anderen Einheiten die Zahl aus der TA-Tabelle der Messgrößen eintragen.",
+        "data": {
+          "entity_id": "Entität",
+          "kind": "Art",
+          "output": "Ausgangsnummer",
+          "unit": "Einheit (nur analog)",
+          "decimals": "Dezimalstellen (nur analog)"
+        }
+      },
+      "remove_mapping": {
+        "title": "Werte entfernen",
+        "data": {
+          "remove": "Zuordnungen, die entfernt werden sollen"
+        }
+      },
+      "settings": {
+        "title": "Sendeintervall",
+        "description": "Alle Werte werden bei jeder Änderung sofort und zusätzlich in diesem Abstand erneut gesendet. Der Abstand muss kleiner sein als der Timeout des CAN-Eingangs in der UVR.",
+        "data": {
+          "interval": "Intervall in Sekunden"
+        }
+      }
+    },
+    "error": {
+      "output_out_of_range": "Ausgangsnummer zu hoch für die gewählte CoE-Version (V1: bis 32, V2: bis 64).",
+      "duplicate_output": "Dieser Ausgang ist bereits belegt.",
+      "unit_required": "Für analoge Werte ist eine Einheit nötig.",
+      "decimals_required": "Für diese Einheit gibt es keinen Standard. Bitte die Dezimalstellen angeben."
+    },
+    "abort": {
+      "no_mappings": "Es sind keine Werte zugeordnet."
+    }
+  }
+}
